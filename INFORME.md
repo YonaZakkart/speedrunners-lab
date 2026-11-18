@@ -135,7 +135,6 @@ proxy_cache_key         "$scheme$request_method$host$request_uri";
 proxy_cache_valid       200 30s;
 proxy_cache_use_stale   error timeout updating http_500 http_502 http_503 http_504;
 proxy_cache_lock        on;
-proxy_cache_background_update on;
 add_header X-Cache-Status $upstream_cache_status always;
 ```
 
@@ -323,6 +322,9 @@ despreciable (son HIT).
 | `GET /api/orders` con caché HIT | 2754.8 | 36.3 ms | 30 ms | 33 ms | 40 ms | 0 | 0 |
 
 Cache hit observado durante la prueba: **200 HIT / 0 MISS (100 %)**.
+
+Los valores varían ±3 % entre corridas (calentamiento de los backends, carga del host y
+planificación del CPU); se reporta una corrida representativa.
 
 ### 6.2 Headroom (300 usuarios concurrentes)
 
@@ -539,3 +541,9 @@ xdg-open http://localhost:8080/containers/
 # 6. Métricas de conexiones
 curl -s http://localhost:8000/nginx_status
 ```
+
+> **Nota al editar `nginx/nginx.conf`:** el archivo se monta con bind mount, así que si se
+> reescribe con `sed -i` (que crea un inodo nuevo) el contenedor sigue viendo el archivo viejo y
+> `nginx -s reload` no aplica los cambios. Hay que recrear el contenedor:
+> `docker compose up -d --force-recreate nginx`. Verificarlo con
+> `docker exec speedrunners-nginx grep -c <patron> /etc/nginx/nginx.conf`.
