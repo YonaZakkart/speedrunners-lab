@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="2">
+<title>SpeedRunners Inc. - Dashboard SRE</title>
+<style>
+  :root { --bg:#0b1220; --panel:#131c2e; --line:#22304a; --txt:#e6edf7; --dim:#8ba0bf;
+          --cyan:#38bdf8; --green:#34d399; --warn:#fbbf24; --bad:#f87171; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:28px; background:var(--bg); color:var(--txt);
+         font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif; }
+  header { display:flex; justify-content:space-between; align-items:baseline;
+           border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:22px; }
+  h1 { font-size:1.35rem; margin:0; letter-spacing:.4px; }
+  h1 span { color:var(--cyan); }
+  .stamp { color:var(--dim); font-size:.85rem; font-variant-numeric: tabular-nums; }
+  .grid { display:grid; grid-template-columns: repeat(4, 1fr); gap:16px; margin-bottom:22px; }
+  .card { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:18px; }
+  .card .label { color:var(--dim); font-size:.78rem; text-transform:uppercase; letter-spacing:.8px; }
+  .card .value { font-size:2.1rem; font-weight:700; margin-top:8px; font-variant-numeric: tabular-nums; }
+  .card .sub { color:var(--dim); font-size:.8rem; margin-top:6px; }
+  .ok { color:var(--green); } .warn { color:var(--warn); } .bad { color:var(--bad); }
+  .cyan { color:var(--cyan); }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:12px;
+            padding:18px; margin-bottom:18px; }
+  section h2 { font-size:.95rem; margin:0 0 14px; color:var(--dim);
+               text-transform:uppercase; letter-spacing:.8px; font-weight:600; }
+  table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); }
+  th { color:var(--dim); font-weight:600; font-size:.78rem; text-transform:uppercase; }
+  tr:last-child td { border-bottom:none; }
+  .spark { display:flex; align-items:flex-end; gap:3px; height:90px; margin-top:6px; }
+  .bar { flex:1; background:var(--green); border-radius:2px 2px 0 0; opacity:.85; }
+  .bar.warn { background:var(--warn); } .bar.bad { background:var(--bad); }
+  .legend { display:flex; gap:18px; color:var(--dim); font-size:.75rem; margin-top:8px; }
+  .dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; }
+  footer { color:var(--dim); font-size:.75rem; text-align:center; margin-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SpeedRunners Inc. <span>/ Dashboard SRE</span></h1>
+  <div class="stamp">Actualizado: 2026-11-18 17:51:59</div>
+</header>
+
+<div class="grid">
+  <div class="card">
+    <div class="label">Latencia promedio (ult. 10)</div>
+    <div class="value cyan">1.6 <small>ms</small></div>
+    <div class="sub">min 1.3 / max 2.0 ms &middot; SLA &lt; 500 ms</div>
+  </div>
+  <div class="card">
+    <div class="label">Cache hit ratio</div>
+    <div class="value ok">99.8%</div>
+    <div class="sub">399 HIT / 0 MISS</div>
+  </div>
+  <div class="card">
+    <div class="label">Cumplimiento SLA</div>
+    <div class="value ok">100.0%</div>
+    <div class="sub">p95 1.8 ms en 400 requests</div>
+  </div>
+  <div class="card">
+    <div class="label">Conexiones activas</div>
+    <div class="value">1</div>
+    <div class="sub">Reading 0 / Writing 1 / Waiting 0</div>
+  </div>
+</div>
+
+<section>
+  <h2>Latencia de los ultimos 20 requests (medidos en vivo)</h2>
+  <div class="spark"><div class="bar" style="height:89%" title="1.6 ms"></div><div class="bar" style="height:89%" title="1.6 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:100%" title="1.8 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:89%" title="1.6 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div></div>
+  <div class="legend">
+    <span><i class="dot" style="background:var(--green)"></i>&lt; 100 ms</span>
+    <span><i class="dot" style="background:var(--warn)"></i>100 - 500 ms</span>
+    <span><i class="dot" style="background:var(--bad)"></i>&gt; 500 ms</span>
+  </div>
+</section>
+
+<section>
+  <h2>Recursos por contenedor</h2>
+  <table>
+    <thead><tr><th>Contenedor</th><th>CPU</th><th>Memoria</th><th>Mem %</th></tr></thead>
+    <tbody>
+      <tr><td>speedrunners-nginx</td><td>0.00%</td><td>35.66MiB / 13.48GiB</td><td>0.26%</td></tr><tr><td>speedrunners-backend2</td><td>0.02%</td><td>12.02MiB / 13.48GiB</td><td>0.09%</td></tr><tr><td>speedrunners-backend4</td><td>0.02%</td><td>12.02MiB / 13.48GiB</td><td>0.09%</td></tr><tr><td>speedrunners-backend1</td><td>0.02%</td><td>12.15MiB / 13.48GiB</td><td>0.09%</td></tr><tr><td>speedrunners-backend3</td><td>0.02%</td><td>12.02MiB / 13.48GiB</td><td>0.09%</td></tr><tr><td>speedrunners-cadvisor</td><td>0.00%</td><td>25.08MiB / 13.48GiB</td><td>0.18%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Nginx stub_status</h2>
+  <table>
+    <thead><tr><th>Aceptadas</th><th>Handled</th><th>Requests</th><th>Reading</th><th>Writing</th><th>Waiting</th></tr></thead>
+    <tbody><tr><td>2135</td><td>2135</td><td>2073</td><td>0</td><td>1</td><td>0</td></tr></tbody>
+  </table>
+</section>
+
+<footer>Generado por monitoreo/dashboard.sh &middot; refresco automatico cada 2s</footer>
+</body>
+</html>

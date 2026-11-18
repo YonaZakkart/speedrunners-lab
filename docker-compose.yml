@@ -8,9 +8,12 @@ services:
       - "8000:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - nginx_cache:/var/cache/nginx
     depends_on:
       - backend1
       - backend2
+      - backend3
+      - backend4
     restart: unless-stopped
 
   backend1:
@@ -18,7 +21,7 @@ services:
     container_name: speedrunners-backend1
     environment:
       BACKEND_ID: backend1
-      ARTIFICIAL_DELAY_MS: "500"
+      ARTIFICIAL_DELAY_MS: "50"
     restart: unless-stopped
 
   backend2:
@@ -26,5 +29,47 @@ services:
     container_name: speedrunners-backend2
     environment:
       BACKEND_ID: backend2
-      ARTIFICIAL_DELAY_MS: "500"
+      ARTIFICIAL_DELAY_MS: "50"
     restart: unless-stopped
+
+  backend3:
+    build: ./backends
+    container_name: speedrunners-backend3
+    environment:
+      BACKEND_ID: backend3
+      ARTIFICIAL_DELAY_MS: "50"
+    restart: unless-stopped
+
+  backend4:
+    build: ./backends
+    container_name: speedrunners-backend4
+    environment:
+      BACKEND_ID: backend4
+      ARTIFICIAL_DELAY_MS: "50"
+    restart: unless-stopped
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.55.1
+    container_name: speedrunners-cadvisor
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    command:
+      - --docker_only=true
+      - --containerd=/var/run/containerd/containerd.sock
+      - --containerd-namespace=moby
+      - --housekeeping_interval=10s
+    environment:
+      DOCKER_API_VERSION: "1.44"
+    privileged: true
+    devices:
+      - /dev/kmsg
+    restart: unless-stopped
+
+volumes:
+  nginx_cache:
