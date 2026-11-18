@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+*.log
+.private/
+nginx/cache/
+.DS_Store
