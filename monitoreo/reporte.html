@@ -41,14 +41,14 @@
 <body>
 <header>
   <h1>SpeedRunners Inc. <span>/ Dashboard SRE</span></h1>
-  <div class="stamp">Actualizado: 2026-11-18 17:57:06</div>
+  <div class="stamp">Actualizado: 2026-11-18 19:51:28</div>
 </header>
 
 <div class="grid">
   <div class="card">
     <div class="label">Latencia promedio (ult. 10)</div>
-    <div class="value cyan">1.6 <small>ms</small></div>
-    <div class="sub">min 1.5 / max 1.8 ms &middot; SLA &lt; 500 ms</div>
+    <div class="value cyan">1.4 <small>ms</small></div>
+    <div class="sub">min 1.3 / max 1.6 ms &middot; SLA &lt; 500 ms</div>
   </div>
   <div class="card">
     <div class="label">Cache hit ratio</div>
@@ -58,7 +58,7 @@
   <div class="card">
     <div class="label">Cumplimiento SLA</div>
     <div class="value ok">100.0%</div>
-    <div class="sub">p95 1.8 ms en 400 requests</div>
+    <div class="sub">p95 1.5 ms en 400 requests</div>
   </div>
   <div class="card">
     <div class="label">Conexiones activas</div>
@@ -69,7 +69,7 @@
 
 <section>
   <h2>Latencia de los ultimos 20 requests (medidos en vivo)</h2>
-  <div class="spark"><div class="bar" style="height:88%" title="1.5 ms"></div><div class="bar" style="height:82%" title="1.4 ms"></div><div class="bar" style="height:94%" title="1.6 ms"></div><div class="bar" style="height:88%" title="1.5 ms"></div><div class="bar" style="height:94%" title="1.6 ms"></div><div class="bar" style="height:94%" title="1.6 ms"></div><div class="bar" style="height:76%" title="1.3 ms"></div><div class="bar" style="height:94%" title="1.6 ms"></div><div class="bar" style="height:76%" title="1.3 ms"></div><div class="bar" style="height:88%" title="1.5 ms"></div><div class="bar" style="height:71%" title="1.2 ms"></div><div class="bar" style="height:82%" title="1.4 ms"></div><div class="bar" style="height:100%" title="1.7 ms"></div><div class="bar" style="height:100%" title="1.7 ms"></div><div class="bar" style="height:88%" title="1.5 ms"></div><div class="bar" style="height:100%" title="1.7 ms"></div><div class="bar" style="height:82%" title="1.4 ms"></div><div class="bar" style="height:76%" title="1.3 ms"></div><div class="bar" style="height:88%" title="1.5 ms"></div><div class="bar" style="height:88%" title="1.5 ms"></div></div>
+  <div class="spark"><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:83%" title="1.5 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:94%" title="1.7 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:67%" title="1.2 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:100%" title="1.8 ms"></div><div class="bar" style="height:72%" title="1.3 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div><div class="bar" style="height:78%" title="1.4 ms"></div></div>
   <div class="legend">
     <span><i class="dot" style="background:var(--green)"></i>&lt; 100 ms</span>
     <span><i class="dot" style="background:var(--warn)"></i>100 - 500 ms</span>
@@ -82,7 +82,7 @@
   <table>
     <thead><tr><th>Contenedor</th><th>CPU</th><th>Memoria</th><th>Mem %</th></tr></thead>
     <tbody>
-      <tr><td>speedrunners-nginx</td><td>0.00%</td><td>34.68MiB / 13.48GiB</td><td>0.25%</td></tr><tr><td>speedrunners-backend2</td><td>0.02%</td><td>13.62MiB / 13.48GiB</td><td>0.10%</td></tr><tr><td>speedrunners-backend4</td><td>0.02%</td><td>13.5MiB / 13.48GiB</td><td>0.10%</td></tr><tr><td>speedrunners-backend1</td><td>0.02%</td><td>13.73MiB / 13.48GiB</td><td>0.10%</td></tr><tr><td>speedrunners-backend3</td><td>0.02%</td><td>13.54MiB / 13.48GiB</td><td>0.10%</td></tr><tr><td>speedrunners-cadvisor</td><td>0.00%</td><td>22.04MiB / 13.48GiB</td><td>0.16%</td></tr>
+      <tr><td>speedrunners-nginx</td><td>0.00%</td><td>35MiB / 13.48GiB</td><td>0.25%</td></tr><tr><td>speedrunners-backend2</td><td>22.49%</td><td>12.27MiB / 13.48GiB</td><td>0.09%</td></tr><tr><td>speedrunners-backend4</td><td>22.87%</td><td>10.55MiB / 13.48GiB</td><td>0.08%</td></tr><tr><td>speedrunners-backend1</td><td>21.95%</td><td>11.31MiB / 13.48GiB</td><td>0.08%</td></tr><tr><td>speedrunners-backend3</td><td>0.01%</td><td>11.13MiB / 13.48GiB</td><td>0.08%</td></tr><tr><td>speedrunners-cadvisor</td><td>0.27%</td><td>35.22MiB / 13.48GiB</td><td>0.26%</td></tr>
     </tbody>
   </table>
 </section>
@@ -91,7 +91,7 @@
   <h2>Nginx stub_status</h2>
   <table>
     <thead><tr><th>Aceptadas</th><th>Handled</th><th>Requests</th><th>Reading</th><th>Writing</th><th>Waiting</th></tr></thead>
-    <tbody><tr><td>3198</td><td>3198</td><td>3110</td><td>0</td><td>1</td><td>0</td></tr></tbody>
+    <tbody><tr><td>12615</td><td>12615</td><td>12238</td><td>0</td><td>1</td><td>0</td></tr></tbody>
   </table>
 </section>
 
