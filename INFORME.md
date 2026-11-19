@@ -277,7 +277,9 @@ incluidos 300 concurrentes. Logs completos en `pruebas/resultados/` e histórico
 
 ![cAdvisor en el navegador: CPU, memoria y red de cada contenedor](./public/screenshots/04_cadvisor.png)
 
-![Prueba de estrés con 100 usuarios concurrentes](./public/screenshots/05_stress.png)
+![Prueba de estrés con 100 usuarios concurrentes](./public/screenshots/05_stress_1.png)
+
+![Prueba de estrés con 100 usuarios concurrentes](./public/screenshots/05_stress_2.png)
 
 ![Dashboard web reporte.html con latencia, hit ratio, SLA y recursos](./public/screenshots/06_reporte_html.png)
 
@@ -289,8 +291,7 @@ incluidos 300 concurrentes. Logs completos en `pruebas/resultados/` e histórico
 La combinación de 500 ms de delay con ausencia de caché: incluso dos peticiones idénticas
 consecutivas pagaban el backend completo. Se atacó en dos capas: `proxy_cache` eliminó el costo
 para el tráfico repetido (504 → 1.6 ms) y bajar el delay a 50 ms con 4 backends mejoró la ruta
-que la caché no cubre (primera petición o contenido no cacheable). Ninguna de las dos cumple el
-SLA en el peor caso por sí sola; juntas sí.
+que la caché no cubre. Ninguna de las dos cumple el SLA en el peor caso por sí sola; juntas sí
 
 **2. ¿Qué métrica mejoró más?**
 El cumplimiento del SLA: de 0.1 % a 100 %. Es la que percibe el usuario y la que estaba rota.
@@ -333,13 +334,13 @@ que una herramienta puede "parecer funcionar" mostrando datos incompletos (cAdvi
 ## 10. Conclusiones
 
 - La línea base no cumplía el SLA en **ninguna** petición; el estado final lo cumple en el
-  **100 %**, incluso con 300 concurrentes (p99 96 ms).
+  **100 %**, incluso con 300 concurrentes (p99 96 ms)
 - La **caché** fue la técnica de mayor impacto (21.8x); el **delay reducido** y el **balanceo
   `least_conn`** son lo que sostiene el rendimiento cuando la caché no puede ayudar.
 - **gzip** no mejora la latencia del servidor pero reduce el ancho de banda 78-86 %, lo que en un
   enlace real sí mejora la carga percibida.
 - El **monitoreo** permitió encontrar la cola de latencia y demostrar la mejora con evidencia.
-- El sistema tiene margen: a 300 concurrentes el p99 es de 96 ms, muy por debajo de 500 ms.
+- El sistema tiene margen: a 300 concurrentes el p99 es de 96 ms, muy por debajo de 500 ms
 
 ---
 
